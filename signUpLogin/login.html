@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Login</h1>
+    <form action="">
+        <input type="email" placeholder="Enter email" id="email">
+        <input type="password" placeholder="Enter password" id="pass">
+        <input type="submit">
+    </form>
+
+</body>
+<script>
+    var userData = JSON.parse(localStorage.getItem("userName"));
+
+    document.querySelector("form").addEventListener("submit", ()=>{
+        event.preventDefault();
+        var userId = document.querySelector('#email').value;
+        var userPass = document.querySelector('#pass').value;
+
+        if(userData == null){
+            alert("fist sign up page")
+        }
+        userData.forEach(element => {
+            event.preventDefault();
+            if(userId == element.email && userPass == element.password){
+                alert("Successfully Login...");
+                window.location.href = 'mens.html';
+                loop.stop = true;
+            }else{
+                alert("Incorrect Ditail");
+                loop.stop = true;
+            }
+        });
+        console.log( "qwe");
+});
+
+</script>
+</html>

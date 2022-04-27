@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <form action="">
+
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter email">
+        <input type="password" id="pass" placeholder="Enter Password">
+        <input type="submit">
+    </form>
+    
+</body>
+<script>
+    document.querySelector("form").addEventListener("submit", ()=>{
+        var cartData;
+        if(localStorage.getItem('userName') == null){
+            cartData = [];
+        }else{
+            cartData =JSON.parse(localStorage.getItem('userName'))
+        }
+    var cartObj = {
+        name: document.querySelector("#name").value,
+        email: document.querySelector("#email").value,
+        password: document.querySelector("#pass").value
+    }
+    if(cartObj.name == "" || cartObj.email == "" || cartObj.password == ""){
+        alert("Something Mising");
+        return ;
+    }
+    cartData.forEach(element => {
+        // event.preventDefault();
+        if(element.email == cartObj.email){
+            alert('alreay sign up on this email');
+            loop.stop = true;
+        }
+    });
+    event.preventDefault();
+    cartData.push(cartObj);
+    localStorage.setItem('userName' ,JSON.stringify(cartData));
+    alert("Sign Up Successfully..")
+    window.location.href = 'index.html';
+    
+})
+    
+</script>
+</html>

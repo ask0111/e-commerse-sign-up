@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .con {
+            box-shadow: 0 0 20px 10px rgb(226, 223, 223);
+            margin: auto;
+            margin-top: 60px;
+            width: 20%;
+            padding: 60px;
+
+        }
+
+        #input {
+            box-shadow: 0 0 20px 20px rgb(240, 236, 236);
+            width: 95%;
+            height: 80px;
+            align-items: center;
+            margin: 8px;
+            font-size: 40px;
+            border: none;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin: auto;
+            margin-top: 20px;
+        }
+        
+        .container button {
+            font-size: 40px;
+            border-radius: 16px;
+            box-shadow: 0 0 0px 0px rgba(181, 177, 177, .1);
+            display: flex;
+            width: 80%;
+            height: 80px;
+            margin: 10px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Masai Calculator</h1>
+    <div class="con">
+        <div id="input">0</div>
+
+        <div class="container">
+
+            <button id="one">1</button>
+            <button id="two">2</button>
+            <button id="three">3</button>
+            <button id="plush">+</button>
+            <button id="four">4</button>
+            <button id="five">5</button>
+            <button id="six">6</button>
+            <button id="minus">-</button>
+            <button id="seven">7</button>
+            <button id="eight">8</button>
+            <button id="nine">9</button>
+            <button id="multiple">x</button>
+            <button id="clear">c</button>
+            <button id="zero">0</button>
+            <button id="equal">=</button>
+            <button id="devied">/</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    var one = document.querySelector('#one');
+    var two = document.querySelector('#two');
+    var three = document.querySelector('#three');
+    var four = document.querySelector('#four');
+    var five = document.querySelector('#five');
+    var six = document.querySelector('#six');
+    var seven = document.querySelector('#seven');
+    var eight = document.querySelector('#eight');
+    var nine = document.querySelector('#nine');
+    var zero = document.querySelector('#zero');
+    var plush = document.querySelector('#plush');
+    var minus = document.querySelector('#minus');
+    var devied = document.querySelector('#devied');
+    var multiple = document.querySelector('#multiple');
+    var equal = document.querySelector('#equal');
+    var clear = document.querySelector('#clear');
+    var ans = document.querySelector('#input');
+    var operation = "";
+
+    one.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 1;
+        ans.innerText = operation;
+    })
+    two.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 2;
+        ans.innerText = operation;
+    })
+    three.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 3;
+        ans.innerText = operation;
+    })
+    four.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 4;
+        ans.innerText = operation;
+    })
+    five.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 5;
+        ans.innerText = operation;
+    })
+    six.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 6;
+        ans.innerText = operation;
+    })
+    seven.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 7;
+        ans.innerText = operation;
+    })
+    eight.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 8;
+        ans.innerText = operation;
+    })
+    nine.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += 9;
+        ans.innerText = operation;
+    })
+    zero.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        if(operation == ""){
+            return ;
+        }
+        operation += 0;
+        ans.innerText = operation;
+    })
+    clear.addEventListener('click', function(){
+        operation = "";
+        ans.innerText = operation;
+    })
+    plush.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += '+';
+        ans.innerText = operation;
+    })
+    minus.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += '-';
+        ans.innerText = operation;
+    })
+    multiple.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += '*';
+        ans.innerText = operation;
+    })
+    devied.addEventListener('click', function(){
+        if(operation.length > 13){
+            return ;
+        }
+        operation += '/';
+        ans.innerText = operation;
+    })
+    equal.addEventListener('click', function(){
+        
+        var op ;
+        if(operation.includes('+')){
+            op = operation.split("+").map(Number);
+            ans.innerText = (op[0]+op[1]);
+            operation = ""+ (op[0]+op[1]);
+            console.log(typeof operation)
+        }
+        else if(operation.includes('-')){
+            op = operation.split("-").map(Number);
+            ans.innerText = (op[0]-op[1]);
+            operation = ""+ (op[0]-op[1]);
+        }
+        else if(operation.includes('*')){
+            op = operation.split("*").map(Number);
+            ans.innerText =  (op[0]*op[1]);
+            operation = "" + op[0]*op[1];
+        }
+        else if(operation.includes('/')){
+            op = operation.split("/").map(Number);
+            ans.innerText = (op[0]/op[1]).toFixed(4);
+            operation =""+ (op[0]/op[1]).toFixed(4);
+        }
+        
+        if(operation.length >= 13){
+            alert("maximum value not possible")
+            
+        }
+    })
+</script>
+
+</html>

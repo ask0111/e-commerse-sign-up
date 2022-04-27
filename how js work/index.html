@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throw Dice</title>
+    <style>
+        .container{
+            margin-top: 30px;
+            width: 100%;
+            /* padding: ; */
+            /* padding: auto; */
+        }
+        .winners, .scores{
+            /* border: 1px solid red; */
+            width: 60%;
+            margin: auto;
+            margin-bottom: 200px;
+            font-size: 30px;
+        }
+        .winners{
+            visibility: hidden;
+            display: none; 
+        }
+        
+        .winner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            background-color: green;
+            border-radius: 10px;
+            margin: 4px;
+        }
+        .second{
+            background-color: yellow;
+        }
+        .three{
+            background-color: red;
+        }
+        h1{
+            text-align: center;
+        }
+        .member-1, .member-2, .member-3, #roll{
+            box-shadow: inset 0 0 100px 1px rgba(80, 78, 78, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px;
+            height: 50px;
+        }
+        #roll{
+            width: 60%;
+            background-color: black;
+            color: white;
+            margin: auto;
+            font-size: 20px;
+            margin-top: 40px;
+        }
+        #heading{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1 id="heading">WINNERS</h1>
+        <div class="winners">
+            <div class="winner"></div>
+            <div class="second winner"></div>
+            <div class="three winner"></div>
+        </div>
+        <h1>SCORES</h1>
+        <div class="scores">
+            <div class="member-1">A</div>
+            <div class="member-2">B</div>
+            <div class="member-3">C</div>
+            <button onclick="rollDice()" id="roll">ROLL THE DICE</button>
+        </div>
+        
+    </div>
+    
+</body>
+<script>    
+    function rollDice(){
+        document.querySelector(".winners").style.visibility = 'visible'
+        document.querySelector(".winners").style.display = 'block'
+        document.querySelector("#heading").style.display = 'block'
+        var scoreA = document.querySelector('.member-1');
+        var scoreB = document.querySelector('.member-2');
+        var scoreC = document.querySelector('.member-3');
+
+        var winnerA = document.querySelector('.winner');
+        var winnerB = document.querySelector('.second');
+        var winnerC = document.querySelector('.three');
+    
+        var a = Math.floor(Math.random()*6+1);
+        var b = Math.floor(Math.random()*6+1);
+        var c = Math.floor(Math.random()*6+1);
+
+        scoreA.innerText = a;
+        scoreB.innerText = b;
+        scoreC.innerText = c;
+
+        var char = "ABC";
+
+        var max = Math.max(a, b, c);
+        var min = Math.min(a, b, c);
+        
+        if(max == min){
+            winnerA.innerText = "A";
+            winnerB.innerText = "B";
+            winnerC.innerText = "C";
+            winnerA.style.backgroundColor = "blue"
+            winnerB.style.backgroundColor = "blue"
+            winnerC.style.backgroundColor = "blue"
+            return ;
+        }
+
+        var f =0;
+        var g =0;
+
+        [a, b, c].forEach((el, i)=>{
+            if(el == max){
+                winnerA.innerText = char[i];
+                winnerA.style.backgroundColor = "green"
+                f = i;
+
+                [c, b, a].forEach((el, j)=>{
+                    if(el == min){
+                        g=2-j;
+                        winnerC.style.backgroundColor = "red"
+                        winnerC.innerText = char[g];
+                        [a, b, c].forEach((el, k)=>{
+                            
+                            if(k !== f && k !== g){
+                                winnerB.style.backgroundColor = "yellow"
+                                winnerB.innerText = char[k];
+                                stop.loop();
+                            }
+                        })
+                        
+                    }
+                })
+            }
+        
+            
+        })
+    }
+
+</script>
+</html>
