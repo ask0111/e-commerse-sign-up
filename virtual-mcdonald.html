@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRTUAL MCDONALD'S</title>
+    <style>
+        #foodSelect{
+            width: 40%;
+            margin: auto;
+            font-size: larger;
+            box-shadow: inset 0 0 2px 1px rgba(111, 112, 111, .7);
+        }
+        #foodSelect input{
+            margin: 20px;
+        }
+        #foodBtn{
+            text-align: center;
+            margin-left: 80px;
+            width: 60%;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        .food-image{
+            width: 40%;
+            margin: auto;
+            margin-top: 40px;
+            box-shadow: inset 0 0 2px 1px rgba(111, 112, 111, .7);
+
+        }
+        img{
+            width: 100%;
+        }
+        .id{
+            width: 300px;
+            float: right;
+            position: relative;
+            top: -430px;
+            right: 10px;
+            padding: 20px;
+            box-shadow: inset 0 0 12px 2px rgba(98, 103, 98, 0.7);
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form  id="foodSelect">
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/hufbd0lfid2pub8ushmb" name="fav_language" id="afood" value="Da Pizzeria">Da Pizzeria <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/kuisp5xx9tcutesp33yf" name="fav_language" id="bfood" value="Zam Zam Fast Food">Zam Zam Fast Food <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/yhnrql8wxgu8sgqjczos" name="fav_language" id="cfood" value="Manohar Dairy and Restaurant">Manohar Dairy and Restaurant <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/tkxs3av7l3w44ytidezg" name="fav_language" id="dfood" value="Hbt Bakery">Hbt Bakery <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/nznohj2y9yppo5wbl7th" name="fav_language" id="efood" value="Deva food corner">Deva food corner <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/rpzty3whtqxhsj9imwyy" name="fav_language" id="ffood" value="Mama Juice Bar">Mama Juice Bar <br>
+            <input type="radio" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/c5im2b1xvz9iweqbqhpy" name="fav_language" id="gfood" value="KFC">KFC <br>
+
+            <input type="submit" onclick="fun()" value="Order Food" id="foodBtn">
+
+        
+        </form>
+        <div class="id">
+        </div>
+        <div class="food-image">
+
+        </div>
+    </div>
+</body>
+<script>
+    function fun(){
+        event.preventDefault()
+        document.querySelector('.food-image').innerHTML ="";
+
+        var input = document.getElementsByName("fav_language");
+        input.forEach(el =>{
+            if(el.checked){
+                console.log("yes")
+                var promis = new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(el);
+                    }, 1000)
+                })
+                
+                promis.then((res)=>{
+                    var image = document.createElement('img');
+                    image.src = el.src;
+                    document.querySelector('.food-image').append(image);
+                    
+                    document.querySelector('.id').innerHTML ="";
+                    var orderId = document.createElement('p');
+                    orderId.innerText = `Order ID: ${Math.floor(Math.random()*1000+1001)}`;
+                    document.querySelector('.id').style.visibility = "visible";
+                    document.querySelector('.id').append(orderId);
+                })
+            }
+        })
+
+    }
+</script>
+</html>
